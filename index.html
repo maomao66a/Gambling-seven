@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="zh"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;排七計分&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f5f5f5;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>table {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-collapse: collapse;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>th, td {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>input {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;排七計分&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th&gt;玩家 1&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th&gt;玩家 2&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th&gt;玩家 3&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th&gt;玩家 4&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;&lt;input type="text" id="player1"&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;&lt;input type="text" id="player2"&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;&lt;input type="text" id="player3"&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;&lt;input type="text" id="player4"&gt;&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="initGame()"&gt;開始遊戲&lt;/button&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="gameArea" style="display:none;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;選擇贏家：&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;select id="winner"&gt;&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;選擇小輸：&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;select id="smallLoser"&gt;&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;選擇中輸：&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;select id="mediumLoser"&gt;&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;選擇大輸：&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;select id="bigLoser"&gt;&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;是否脫手？&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="checkbox" id="touchedOut"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;是否尾支七？&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="checkbox" id="finalSeven"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="calculateScore()"&gt;計算並記錄&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;總分&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;table id="scoreTable"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;tr&gt;&lt;th&gt;玩家&lt;/th&gt;&lt;th&gt;分數&lt;/th&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;tbody&gt;&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;最近五局記錄&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;table id="historyTable"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;tr&gt;&lt;th&gt;局數&lt;/th&gt;&lt;th&gt;贏家&lt;/th&gt;&lt;th&gt;小輸&lt;/th&gt;&lt;th&gt;中輸&lt;/th&gt;&lt;th&gt;大輸&lt;/th&gt;&lt;th&gt;得分&lt;/th&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;tbody&gt;&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let players = [];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let scores = {};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let history = [];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function initGame() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>players = [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById("player1").value.trim(),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById("player2").value.trim(),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById("player3").value.trim(),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById("player4").value.trim()</p>
+<p class="p1"><span class="Apple-converted-space">            </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (players.some(p =&gt; p === "")) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alert("請輸入所有玩家名稱！");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>scores = {};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>players.forEach(p =&gt; scores[p] = 0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateDropdowns();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateScoreTable();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("gameArea").style.display = "block";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateDropdowns() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let selects = ["winner", "smallLoser", "mediumLoser", "bigLoser"];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>selects.forEach(id =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let select = document.getElementById(id);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>select.innerHTML = "";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>players.forEach(player =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>let option = document.createElement("option");</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>option.value = player;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>option.textContent = player;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>select.appendChild(option);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function calculateScore() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let winner = document.getElementById("winner").value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let smallLoser = document.getElementById("smallLoser").value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let mediumLoser = document.getElementById("mediumLoser").value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let bigLoser = document.getElementById("bigLoser").value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let touchedOut = document.getElementById("touchedOut").checked;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let finalSeven = document.getElementById("finalSeven").checked;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let scoreTable = {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>normal: [300, -50, -100, -150],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>touched: [600, -100, -200, -300],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>finalSeven: [1200, -200, -400, -600]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let key = finalSeven ? "finalSeven" : touchedOut ? "touched" : "normal";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let baseScores = scoreTable[key];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let small = baseScores[1], medium = baseScores[2], big = baseScores[3], win = baseScores[0];</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>scores[winner] += win;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scores[smallLoser] += small;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scores[mediumLoser] += medium;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scores[bigLoser] += big;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>history.unshift({ winner, smallLoser, mediumLoser, bigLoser, score: `${win}/${small}/${medium}/${big}` });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (history.length &gt; 5) history.pop();</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateScoreTable();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateHistoryTable();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateScoreTable() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let tbody = document.getElementById("scoreTable").querySelector("tbody");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tbody.innerHTML = "";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>players.forEach(p =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let row = `&lt;tr&gt;&lt;td&gt;${p}&lt;/td&gt;&lt;td&gt;${scores[p]}&lt;/td&gt;&lt;/tr&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tbody.innerHTML += row;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateHistoryTable() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let tbody = document.getElementById("historyTable").querySelector("tbody");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tbody.innerHTML = "";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>history.forEach((h, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let row = `&lt;tr&gt;&lt;td&gt;${i + 1}&lt;/td&gt;&lt;td&gt;${h.winner}&lt;/td&gt;&lt;td&gt;${h.smallLoser}&lt;/td&gt;&lt;td&gt;${h.mediumLoser}&lt;/td&gt;&lt;td&gt;${h.bigLoser}&lt;/td&gt;&lt;td&gt;${h.score}&lt;/td&gt;&lt;/tr&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tbody.innerHTML += row;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
