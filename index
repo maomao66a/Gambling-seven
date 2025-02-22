@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排七計分</title>
+    <style>
+        body {
+            font-size: 24px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+        }
+        button {
+            font-size: 20px;
+            margin: 10px;
+        }
+        input {
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>排七計分</h2>
+    <table>
+        <tr>
+            <th>玩家 1</th>
+            <th>玩家 2</th>
+            <th>玩家 3</th>
+            <th>玩家 4</th>
+        </tr>
+        <tr>
+            <td><input type="text" id="player1"></td>
+            <td><input type="text" id="player2"></td>
+            <td><input type="text" id="player3"></td>
+            <td><input type="text" id="player4"></td>
+        </tr>
+    </table>
+    <button onclick="initGame()">開始遊戲</button>
+    
+    <div id="gameArea" style="display:none;">
+        <label>選擇贏家：</label>
+        <select id="winner"></select>
+        <label>選擇小輸：</label>
+        <select id="smallLoser"></select>
+        <label>選擇中輸：</label>
+        <select id="mediumLoser"></select>
+        <label>選擇大輸：</label>
+        <select id="bigLoser"></select>
+        <label>是否脫手？</label>
+        <input type="checkbox" id="touchedOut">
+        <label>是否尾支七？</label>
+        <input type="checkbox" id="finalSeven">
+        <button onclick="calculateScore()">計算並記錄</button>
+        <h3>總分</h3>
+        <table id="scoreTable">
+            <thead>
+                <tr><th>玩家</th><th>分數</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <h3>最近五局記錄</h3>
+        <table id="historyTable">
+            <thead>
+                <tr><th>局數</th><th>贏家</th><th>小輸</th><th>中輸</th><th>大輸</th><th>得分</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    
+    <script>
+        let players = [];
+        let scores = {};
+        let history = [];
+
+        function initGame() {
+            players = [
+                document.getElementById("player1").value.trim(),
+                document.getElementById("player2").value.trim(),
+                document.getElementById("player3").value.trim(),
+                document.getElementById("player4").value.trim()
+            ];
+
+            if (players.some(p => p === "")) {
+                alert("請輸入所有玩家名稱！");
+                return;
+            }
+            
+            scores = {};
+            players.forEach(p => scores[p] = 0);
+            updateDropdowns();
+            updateScoreTable();
+            document.getElementById("gameArea").style.display = "block";
+        }
+        
+        function updateDropdowns() {
+            let selects = ["winner", "smallLoser", "mediumLoser", "bigLoser"];
+            selects.forEach(id => {
+                let select = document.getElementById(id);
+                select.innerHTML = "";
+                players.forEach(player => {
+                    let option = document.createElement("option");
+                    option.value = player;
+                    option.textContent = player;
+                    select.appendChild(option);
+                });
+            });
+        }
+        
+        function calculateScore() {
+            let winner = document.getElementById("winner").value;
+            let smallLoser = document.getElementById("smallLoser").value;
+            let mediumLoser = document.getElementById("mediumLoser").value;
+            let bigLoser = document.getElementById("bigLoser").value;
+            let touchedOut = document.getElementById("touchedOut").checked;
+            let finalSeven = document.getElementById("finalSeven").checked;
+            
+            let scoreTable = {
+                normal: [300, -50, -100, -150],
+                touched: [600, -100, -200, -300],
+                finalSeven: [1200, -200, -400, -600]
+            };
+            
+            let key = finalSeven ? "finalSeven" : touchedOut ? "touched" : "normal";
+            let baseScores = scoreTable[key];
+            let small = baseScores[1], medium = baseScores[2], big = baseScores[3], win = baseScores[0];
+            
+            scores[winner] += win;
+            scores[smallLoser] += small;
+            scores[mediumLoser] += medium;
+            scores[bigLoser] += big;
+            
+            history.unshift({ winner, smallLoser, mediumLoser, bigLoser, score: `${win}/${small}/${medium}/${big}` });
+            if (history.length > 5) history.pop();
+            
+            updateScoreTable();
+            updateHistoryTable();
+        }
+        
+        function updateScoreTable() {
+            let tbody = document.getElementById("scoreTable").querySelector("tbody");
+            tbody.innerHTML = "";
+            players.forEach(p => {
+                let row = `<tr><td>${p}</td><td>${scores[p]}</td></tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+        
+        function updateHistoryTable() {
+            let tbody = document.getElementById("historyTable").querySelector("tbody");
+            tbody.innerHTML = "";
+            history.forEach((h, i) => {
+                let row = `<tr><td>${i + 1}</td><td>${h.winner}</td><td>${h.smallLoser}</td><td>${h.mediumLoser}</td><td>${h.bigLoser}</td><td>${h.score}</td></tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+    </script>
+</body>
+</html>
